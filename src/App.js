@@ -3,12 +3,13 @@ import styles from './styles/App.module.scss';
 import plusMinus from './assets/plusMinus.svg';
 import clear from './assets/clear.svg';
 import { NumericFormat } from 'react-number-format';
+import { useKeyPress } from './hook/hook';
 
 function App() {
-    const [isActive, setIsActive] = useState(false);
-    const handleClick = () => {
-        setIsActive((current) => !current);
-    };
+    //обработчик клавиатуры
+    // const onKeyPress = (event) => {
+    //     console.log(`key pressed: ${event.key}`);
+    // };
 
     const [preState, setPreState] = useState('0');
     const [curState, setCurState] = useState('');
@@ -17,7 +18,7 @@ function App() {
     const [total, setTotal] = useState(false);
 
     const inputNum = (e) => {
-        if (curState.includes(',') && e.target.innerText === ',') return;
+        if (curState.includes('.') && e.target.innerText === '.') return;
 
         if (total) {
             setPreState('');
@@ -100,11 +101,15 @@ function App() {
     return (
         <div className={styles.container}>
             <div className={styles.showInput}>
-                {input !== '' || input === '0' ? input : preState}
+                {input !== '' || input === '0' ? (
+                    <NumericFormat value={input} displayType={'text'} thousandSeparator={true} />
+                ) : (
+                    <NumericFormat value={preState} displayType={'text'} thousandSeparator={true} />
+                )}
             </div>
             <div className={styles.down}>
                 <div className={styles.left}>
-                    <button onClick={reset} className={styles.btn}>
+                    <button onClick={reset} className={styles.btnReset}>
                         AC
                     </button>
                     <button onClick={minusPlus} className={styles.btn}>
@@ -143,7 +148,7 @@ function App() {
                             3
                         </button>
                         <button onClick={inputNum} className={styles.btn}>
-                            ,
+                            .
                         </button>
                         <button onClick={inputNum} className={styles.btn}>
                             0
@@ -154,7 +159,7 @@ function App() {
                     </button>
                 </div>
                 <div className={styles.right}>
-                    <button onClick={back} className={styles.btnOrange}>
+                    <button onClick={back} className={styles.btnOrangeClear}>
                         <img src={clear} alt="" />
                     </button>
                     <button onClick={operatorType} className={styles.btnOrange}>
