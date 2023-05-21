@@ -13,6 +13,9 @@
         font-weight: 500;
         margin: 150px 0px 30px 0px;
         padding-right: 10px;
+        overflow: hidden;
+        max-width: 70ch;
+        height: 100px;
     }
     .down {
         display: flex;
@@ -27,16 +30,8 @@
             margin-right: 40px;
 
             .btn {
-                position: relative;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
                 background-color: #f1f1f3;
-                box-shadow: rgb(150, 150, 150) 4px 4px 9px 0px, rgb(255, 255, 255) -6px -4px 6px 0px;
-                padding: 5px;
                 color: #999;
-                font-size: 30px;
-                font-weight: 500;
             }
         }
         .right {
@@ -45,17 +40,32 @@
             height: 100%;
 
             .btnOrange {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
                 background-color: #f90;
-                box-shadow: rgb(150, 150, 150) 4px 4px 9px 0px, rgb(255, 255, 255) -6px -4px 6px 0px;
-                padding: 5px;
                 color: #fff;
-                font-size: 30px;
-                font-weight: 500;
-                text-align: center;
             }
+        }
+    }
+
+    .btn,
+    .btnOrange {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #f90;
+        box-shadow: rgb(150, 150, 150) 4px 4px 9px 0px, rgb(255, 255, 255) -6px -4px 6px 0px;
+        padding: 5px;
+        color: #fff;
+        font-size: 30px;
+        font-weight: 500;
+        text-align: center;
+
+        &:hover {
+            transform: scale(1.1);
+            transition: 0.4s;
+        }
+        &:active {
+            transform: scale(0.8);
+            transition: 0.4s;
         }
     }
 }
